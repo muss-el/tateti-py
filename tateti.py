@@ -30,6 +30,6 @@ def jugadasGanadoras(posiciones):
 while True:
     try:
         print (mostrarTablero(posiciones), "\nIngresá una posición valida.")
-        posicion = int(input(">>> "))
+        posicion = int(input(">>> ")) - 1
     except:
         pass
