@@ -45,6 +45,6 @@ while True:
         if ganador:
              print("\nGanó el jugador {}.".format(ganador))
              break
-    continuar = input(r"Desea continuar?\n"Si" para continuar, o cualquier otra cosa para salir.")
+    continuar = input("Desea continuar?\n\"Si\" para continuar, o cualquier otra cosa para salir.")
     if continuar == "s" or continuar == "S":
         break
