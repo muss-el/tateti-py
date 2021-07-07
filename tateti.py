@@ -1,5 +1,11 @@
 import os
 
+def limpiarConsola():
+    if os.name in ("ce", "nt", "dos"):
+        os.system("cls")
+    else:
+        os.system("clear")
+
 def mostrarTablero(posiciones):
     tablero = ( f""" {posiciones[0]} | {posiciones[1]} | {posiciones[2]}
 -----------
@@ -33,12 +39,13 @@ while True:
     print (mostrarTablero(posiciones))
     while True:
         try:
-            print ("\nIngresá una posición valida.")
+            print ("\nTurno del jugador", "X." if turnoDe else "O.")
+            print ("Ingresá una posición valida.")
             posicion = int(input(">>> ")) - 1
         except:
-            pass
+            continue
 
-        os.system("cls")
+        limpiarConsola()
         posiciones[posicion] = "X" if turnoDe else "O"
         turnoDe = not turnoDe
         print(mostrarTablero(posiciones))
@@ -54,8 +61,8 @@ while True:
 
     if continuar == "Si" or continuar == "si":
         posiciones = list(i for i in range(1,10))
-        os.system("cls")
+        limpiarConsola()
         pass
     else:
-        os.system("cls")
+        limpiarConsola()
         break
