@@ -8,8 +8,6 @@ def mostrarTablero(posiciones):
     return tablero
 posiciones = list(i for i in range(1,10))
 turnoDe = True
-#posiciones[6], posiciones [7], posiciones[8] = "X", "X", "X"
-#mostrarTablero(posiciones)
 
 def jugadasGanadoras(posiciones):
     jugadaUno = [posiciones[0] == posiciones[1] == posiciones[2], posiciones[0]]
@@ -29,9 +27,9 @@ def jugadasGanadoras(posiciones):
         return False
 
 while True:
+    print (mostrarTablero(posiciones), "\nIngresá una posición valida.")
     while True:
         try:
-            print (mostrarTablero(posiciones), "\nIngresá una posición valida.")
             posicion = int(input(">>> ")) - 1
         except:
             pass
@@ -45,6 +43,13 @@ while True:
         if ganador:
              print("Ganó el jugador {}.".format(ganador))
              break
-    continuar = input("Desea continuar?\n\"Si\" para continuar, o cualquier otra cosa para salir.")
-    if not continuar == "si" or not continuar == "Si":
+    print ("Desea continuar?")
+    print ("\"Si\" para continuar, o cualquier otra cosa para salir.")
+    continuar = input(">>> ")
+    if continuar == "si" or continuar == "Si":
+        posiciones = list(i for i in range(1,10))
+        os.system("cls")
+        pass
+    else:
+        os.system("cls")
         break
