@@ -36,15 +36,15 @@ while True:
         except:
             pass
 
+        os.system("cls")
         posiciones[posicion] = "X" if turnoDe else "O"
         turnoDe = not turnoDe
         print(mostrarTablero(posiciones))
-        os.system("cls")
 
         ganador = jugadasGanadoras(posiciones)
         if ganador:
-             print("\nGanó el jugador {}.".format(ganador))
+             print("Ganó el jugador {}.".format(ganador))
              break
     continuar = input("Desea continuar?\n\"Si\" para continuar, o cualquier otra cosa para salir.")
-    if continuar == "s" or continuar == "S":
+    if not continuar == "si" or not continuar == "Si":
         break
