@@ -5,7 +5,7 @@ def mostrarTablero(posiciones):
 -----------
  {posiciones[6]} | {posiciones[7]} | {posiciones[8]}""")
     return tablero
-posiciones = list(i for i in range(0,9))
+posiciones = list(i for i in range(1,10))
 
 #posiciones[6], posiciones [7], posiciones[8] = "X", "X", "X"
 #mostrarTablero(posiciones)
