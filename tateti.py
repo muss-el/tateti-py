@@ -1,3 +1,4 @@
+import os
 def mostrarTablero(posiciones):
     tablero = ( f""" {posiciones[0]} | {posiciones[1]} | {posiciones[2]}
 -----------
@@ -6,7 +7,7 @@ def mostrarTablero(posiciones):
  {posiciones[6]} | {posiciones[7]} | {posiciones[8]}""")
     return tablero
 posiciones = list(i for i in range(1,10))
-
+turnoDe = True
 #posiciones[6], posiciones [7], posiciones[8] = "X", "X", "X"
 #mostrarTablero(posiciones)
 
@@ -28,8 +29,22 @@ def jugadasGanadoras(posiciones):
         return False
 
 while True:
-    try:
-        print (mostrarTablero(posiciones), "\nIngresá una posición valida.")
-        posicion = int(input(">>> ")) - 1
-    except:
-        pass
+    while True:
+        try:
+            print (mostrarTablero(posiciones), "\nIngresá una posición valida.")
+            posicion = int(input(">>> ")) - 1
+        except:
+            pass
+
+        posiciones[posicion] = "X" if turnoDe else "O"
+        turnoDe = not turnoDe
+        print(mostrarTablero(posiciones))
+        os.system("cls")
+
+        ganador = jugadasGanadoras(posiciones)
+        if ganador:
+             print("\nGanó el jugador {}.".format(ganador))
+             break
+    continuar = input(r"Desea continuar?\n"Si" para continuar, o cualquier otra cosa para salir.")
+    if continuar == "s" or continuar == "S":
+        break
