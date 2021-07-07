@@ -9,4 +9,4 @@ Y corré el tateti con:
 
     py tateti.py
 ### O puedes, simplemente, descargar el archivo tateti.py y listo!
-### Se agradece cualquier comentario :D
+Se agradece cualquier comentario :D
