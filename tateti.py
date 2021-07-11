@@ -1,21 +1,17 @@
 import os
 
-def limpiarConsola():
+def clear():
     if os.name in ("ce", "nt", "dos"):
         os.system("cls")
     else:
         os.system("clear")
 
 def mostrarTablero(posiciones):
-    tablero = ( f""" {posiciones[0]} | {posiciones[1]} | {posiciones[2]}
+    print (f""" {posiciones[0]} | {posiciones[1]} | {posiciones[2]}
 -----------
  {posiciones[3]} | {posiciones[4]} | {posiciones[5]}
 -----------
  {posiciones[6]} | {posiciones[7]} | {posiciones[8]}""")
-    return tablero
-
-posiciones = list(i for i in range(1,10))
-turnoDe = True
 
 def jugadasGanadoras(posiciones):
     jugadaUno = [posiciones[0] == posiciones[1] == posiciones[2], posiciones[0]]
@@ -28,41 +24,58 @@ def jugadasGanadoras(posiciones):
     jugadaOcho = [posiciones[6] == posiciones[7] == posiciones[8], posiciones[6]]
     jugadas = (jugadaUno, jugadaDos, jugadaTres, jugadaCuatro, jugadaCinco, jugadaSeis, jugadaSiete, jugadaOcho)
 
-    for i in range(0,8):
-        if (jugadas[i])[0]:
-            return (jugadas[i])[1]
+    for jugada in jugadas:
+        if jugada[0]:
+            return jugada[1]
         else:
             continue
-        return False
+    return False
 
 while True:
-    print (mostrarTablero(posiciones))
+    posiciones = list(i for i in range(1,10))
+    posicionesVacias = list(" " for i in range (1,10))
+    turnoDe = True
+
     while True:
+        clear()
+        mostrarTablero(posiciones)
+
+        if turnoDe:
+            print ("Turno del jugador X.")
+        else:
+            print ("Turno del jugador O.")
+
+        print ("Ingresá una posición valida.")
+        entrada = input(">>> ")
         try:
-            print ("\nTurno del jugador", "X." if turnoDe else "O.")
-            print ("Ingresá una posición valida.")
-            posicion = int(input(">>> ")) - 1
-        except:
+            posicion = int(entrada) - 1
+        except ValueError:
+            continue
+        if posiciones[posicion] in ("X", "O"):
             continue
 
-        limpiarConsola()
-        posiciones[posicion] = "X" if turnoDe else "O"
+        if turnoDe:
+            posicionesVacias[posicion] = "X"
+            posiciones[posicion] = "X"
+        else:
+            posicionesVacias[posicion] = "O"
+            posiciones[posicion] = "O"
+
         turnoDe = not turnoDe
-        print(mostrarTablero(posiciones))
 
         ganador = jugadasGanadoras(posiciones)
         if ganador:
-             print("Ganó el jugador {}.".format(ganador))
-             break
+            clear()
+            mostrarTablero(posicionesVacias)
+            print("Ganó el jugador {}.".format(ganador))
+            break
 
     print ("Desea continuar?")
     print ("\"Si\" para continuar, o cualquier otra cosa para salir.")
     continuar = input(">>> ")
-
-    if continuar == "Si" or continuar == "si":
-        posiciones = list(i for i in range(1,10))
-        limpiarConsola()
-        pass
+    if continuar in ("SI", "Si", "si"):
+        continue
     else:
-        limpiarConsola()
         break
+
+exit()
